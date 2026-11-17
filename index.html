@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f3ed">
+    <meta name="description" content="NEO مساحة ثنائية اللغة للنمو الشخصي والتأمل والتعلّم.">
+    <title>NEO — مساحة للنمو</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#home" aria-label="NEO home">
+        <span class="brand-mark" aria-hidden="true">N</span>
+        <span>NEO<span class="brand-period">.</span></span>
+      </a>
+      <nav class="main-nav" aria-label="التنقل الرئيسي">
+        <a href="#today" data-i18n="navToday">اليوم</a>
+        <a href="#journey" data-i18n="navJourney">رحلتك</a>
+        <a href="#library" data-i18n="navLibrary">المكتبة</a>
+      </nav>
+      <button class="language-button" id="language-toggle" type="button" aria-label="Switch language">EN</button>
+    </header>
+
+    <main id="home">
+      <section class="welcome section-wrap" id="today">
+        <div class="welcome-copy">
+          <p class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="eyebrow">مساحة آمنة لتكون على طبيعتك</span></p>
+          <h1 data-i18n="heroTitle">كل رحلة تبدأ<br><span>بخطوة صغيرة.</span></h1>
+          <p class="hero-description" data-i18n="heroDescription">خذ لحظة لنفسك. لا تحتاج أن تعرف كل الإجابات — يكفي أن تبدأ من هنا.</p>
+          <a class="primary-link" href="#checkin"><span data-i18n="startCheckin">ابدأ لحظتك</span><span aria-hidden="true">↙</span></a>
+        </div>
+        <div class="welcome-art" aria-hidden="true">
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <div class="art-sun"></div>
+          <div class="art-hill hill-back"></div>
+          <div class="art-hill hill-front"></div>
+          <span class="art-label">A LITTLE<br>MORE YOU</span>
+        </div>
+        <div class="date-stamp"><span class="date-number" id="day-number"></span><span class="date-label" id="date-label"></span></div>
+      </section>
+
+      <section class="section-wrap journey-section" id="journey">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" data-i18n="journeyEyebrow">مساحتك، إيقاعك</p>
+            <h2 data-i18n="journeyTitle">أين تود أن تبدأ؟</h2>
+          </div>
+          <p class="section-note" data-i18n="journeyNote">اختر ما يناسبك اليوم. يمكنك العودة إلى أي مسار وقتما تشاء.</p>
+        </div>
+        <div class="path-grid">
+          <a class="path-card path-growth" href="#checkin">
+            <span class="path-number">01 / GROW</span>
+            <span class="path-icon" aria-hidden="true">↗</span>
+            <h3 data-i18n="growthTitle">النمو</h3>
+            <p data-i18n="growthDescription">تعرّف على نفسك، وابنِ عادات صغيرة تشبهك.</p>
+            <span class="path-link" data-i18n="explorePath">استكشف المسار <span aria-hidden="true">←</span></span>
+          </a>
+          <a class="path-card path-reset" href="#challenge">
+            <span class="path-number">02 / RESET</span>
+            <span class="path-icon" aria-hidden="true">✳</span>
+            <h3 data-i18n="resetTitle">استعادة التوازن</h3>
+            <p data-i18n="resetDescription">امنح نفسك مساحة للراحة والبدء من جديد.</p>
+            <span class="path-link" data-i18n="explorePath">استكشف المسار <span aria-hidden="true">←</span></span>
+          </a>
+          <a class="path-card path-discover" href="#library">
+            <span class="path-number">03 / DISCOVER</span>
+            <span class="path-icon" aria-hidden="true">⌕</span>
+            <h3 data-i18n="discoverTitle">الاكتشاف</h3>
+            <p data-i18n="discoverDescription">أفكار وأسئلة تفتح لك طرقًا جديدة للتفكير.</p>
+            <span class="path-link" data-i18n="explorePath">استكشف المسار <span aria-hidden="true">←</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section class="practice-section" id="checkin">
+        <div class="section-wrap practice-grid">
+          <div class="practice-intro">
+            <p class="eyebrow" data-i18n="checkinEyebrow">وقفة قصيرة</p>
+            <h2 data-i18n="checkinTitle">كيف تشعر<br>في هذه اللحظة؟</h2>
+            <p data-i18n="checkinDescription">لا توجد إجابة صحيحة أو خاطئة. لاحظ شعورك كما هو، دون حكم.</p>
+            <div class="privacy-note"><span aria-hidden="true">◉</span><span data-i18n="privacyNote">تأملك يُحفظ على هذا الجهاز فقط.</span></div>
+          </div>
+          <form class="checkin-card" id="checkin-form">
+            <fieldset>
+              <legend data-i18n="moodQuestion">اختر ما يقترب من شعورك</legend>
+              <div class="mood-options">
+                <label class="mood-option"><input type="radio" name="mood" value="1" required><span class="mood-face">☁</span><span data-i18n="mood1">مثقل</span></label>
+                <label class="mood-option"><input type="radio" name="mood" value="2"><span class="mood-face">◔</span><span data-i18n="mood2">متعب</span></label>
+                <label class="mood-option"><input type="radio" name="mood" value="3"><span class="mood-face">◡</span><span data-i18n="mood3">مستقر</span></label>
+                <label class="mood-option"><input type="radio" name="mood" value="4"><span class="mood-face">☼</span><span data-i18n="mood4">جيد</span></label>
+                <label class="mood-option"><input type="radio" name="mood" value="5"><span class="mood-face">✦</span><span data-i18n="mood5">مشرق</span></label>
+              </div>
+            </fieldset>
+            <label class="reflection-label" for="reflection" data-i18n="reflectionLabel">ما الشيء الذي تحتاجه من نفسك اليوم؟</label>
+            <textarea id="reflection" name="reflection" rows="3" maxlength="500" data-i18n-placeholder="reflectionPlaceholder" placeholder="اكتب لنفسك بضع كلمات..."></textarea>
+            <div class="form-footer">
+              <p class="form-status" id="checkin-status" role="status" aria-live="polite"></p>
+              <button class="submit-button" type="submit"><span data-i18n="saveCheckin">احفظ لحظتي</span><span aria-hidden="true">↗</span></button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section class="section-wrap challenge-section" id="challenge">
+        <div class="challenge-copy">
+          <p class="eyebrow" data-i18n="challengeEyebrow">تحدّي اليوم · ٥ دقائق</p>
+          <h2 data-i18n="challengeTitle">اترك مساحة<br>للحظة هادئة.</h2>
+          <p data-i18n="challengeDescription">ابتعد قليلًا عن الشاشة. تنفّس ببطء، ولاحظ ثلاثة أشياء حولك.</p>
+          <button class="outline-button" id="complete-challenge" type="button"><span data-i18n="completeChallenge">أنجزت التحدي</span><span aria-hidden="true">✓</span></button>
+          <p class="challenge-status" id="challenge-status" role="status" aria-live="polite"></p>
+        </div>
+        <div class="challenge-art" aria-hidden="true">
+          <div class="challenge-circle circle-large"></div>
+          <div class="challenge-circle circle-small"></div>
+          <span class="challenge-quote">“<br><span data-i18n="quote">كن هنا<br>فقط.</span></span>
+          <span class="challenge-art-caption">PAUSE / NOTICE / BEGIN AGAIN</span>
+        </div>
+      </section>
+
+      <section class="library-section" id="library">
+        <div class="section-wrap">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow" data-i18n="libraryEyebrow">فضولك يقودك</p>
+              <h2 data-i18n="libraryTitle">شيء صغير لتأخذه معك.</h2>
+            </div>
+            <span class="library-index">NEO FIELD NOTES — 001</span>
+          </div>
+          <article class="note-card">
+            <div class="note-mark" aria-hidden="true">“</div>
+            <div>
+              <p class="note-category" data-i18n="noteCategory">فكرة للتأمل</p>
+              <h3 data-i18n="noteTitle">التقدّم لا يعني أن تكون بخير طوال الوقت. أحيانًا هو أن تعرف ما تحتاجه عندما لا تكون كذلك.</h3>
+              <p class="note-prompt" data-i18n="notePrompt">سؤال اليوم: ما خطوة واحدة لطيفة يمكنك أن تمنحها لنفسك؟</p>
+            </div>
+            <span class="note-aside" data-i18n="noteAside">اقرأها<br>على مهل.</span>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="section-wrap footer-inner">
+        <a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true">N</span><span>NEO<span class="brand-period">.</span></span></a>
+        <p data-i18n="footerNote">خطوة بخطوة، وعلى طريقتك.</p>
+        <span>© NEO <span id="year"></span></span>
+      </div>
+    </footer>
+  </body>
+</html>
