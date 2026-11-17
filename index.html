@@ -6,27 +6,81 @@
     <meta name="theme-color" content="#f5f3ed">
     <meta name="description" content="NEO مساحة ثنائية اللغة للنمو الشخصي والتأمل والتعلّم.">
     <title>NEO — مساحة للنمو</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon-192.png">
     <link rel="stylesheet" href="styles.css">
     <script src="app.js" defer></script>
   </head>
   <body>
+    <section class="auth-view" id="auth-view">
+      <a class="brand auth-brand" href="/" aria-label="NEO">
+        <span class="brand-mark" aria-hidden="true">N</span>
+        <span>NEO<span class="brand-period">.</span></span>
+      </a>
+      <div class="auth-layout">
+        <div class="auth-intro">
+          <p class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="authEyebrow">مساحة واحدة لكل ما تريد أن تبنيه</span></p>
+          <h1 data-i18n="authTitle">ابدأ رحلتك<br><span>على طريقتك.</span></h1>
+          <p data-i18n="authDescription">مكان هادئ للنمو، والتعلّم، واستكشاف الأفكار، ومتابعة المشاريع التي تهمك.</p>
+          <div class="auth-pill-row"><span data-i18n="authPillOne">مساحة شخصية</span><span data-i18n="authPillTwo">بياناتك محفوظة بأمان</span></div>
+        </div>
+        <form class="auth-card" id="auth-form">
+          <div class="auth-card-heading">
+            <p class="eyebrow" data-i18n="authFormEyebrow">أهلاً بك في NEO</p>
+            <h2 id="auth-form-title" data-i18n="loginTitle">تسجيل الدخول</h2>
+          </div>
+          <label class="form-label" id="auth-name-label" for="auth-name" hidden data-i18n="nameLabel">الاسم</label>
+          <input class="text-input" id="auth-name" name="name" autocomplete="name" maxlength="80" hidden>
+          <label class="form-label" for="auth-email" data-i18n="emailLabel">البريد الإلكتروني</label>
+          <input class="text-input" id="auth-email" name="email" type="email" autocomplete="email" maxlength="254" required>
+          <label class="form-label" for="auth-password" data-i18n="passwordLabel">كلمة المرور</label>
+          <input class="text-input" id="auth-password" name="password" type="password" autocomplete="current-password" minlength="10" maxlength="128" required>
+          <p class="field-hint" data-i18n="passwordHint">10 أحرف على الأقل.</p>
+          <p class="auth-error" id="auth-error" role="alert" aria-live="polite"></p>
+          <button class="submit-button auth-submit" id="auth-submit" type="submit"><span data-i18n="loginAction">دخول إلى مساحتك</span><span aria-hidden="true">↗</span></button>
+          <p class="auth-switch"><span id="auth-switch-copy" data-i18n="noAccount">جديد هنا؟</span> <button id="auth-mode-toggle" type="button" data-i18n="createAccount">أنشئ حسابًا</button></p>
+          <p class="auth-privacy" data-i18n="authPrivacy">بيانات الحساب والمشاريع محفوظة في قاعدة بيانات التطبيق.</p>
+        </form>
+      </div>
+      <button class="language-button auth-language" id="language-toggle" type="button" aria-label="Switch language">EN</button>
+    </section>
+
+    <div id="workspace" hidden>
     <header class="topbar">
       <a class="brand" href="#home" aria-label="NEO home">
         <span class="brand-mark" aria-hidden="true">N</span>
         <span>NEO<span class="brand-period">.</span></span>
       </a>
-      <nav class="main-nav" aria-label="التنقل الرئيسي">
-        <a href="#today" data-i18n="navToday">اليوم</a>
-        <a href="#journey" data-i18n="navJourney">رحلتك</a>
-        <a href="#library" data-i18n="navLibrary">المكتبة</a>
+      <nav class="main-nav" id="main-nav" aria-label="التنقل الرئيسي">
+        <button class="nav-button active" type="button" data-page="dashboard" data-i18n="navDashboard">الرئيسية</button>
+        <button class="nav-button" type="button" data-page="projects" data-i18n="navProjects">مشاريعي</button>
+        <button class="nav-button" type="button" data-page="learning" data-i18n="navLearning">التعلّم</button>
+        <button class="nav-button" type="button" data-page="explore" data-i18n="navExplore">استكشف</button>
+        <button class="nav-button" type="button" data-page="profile" data-i18n="navProfile">حسابي</button>
       </nav>
-      <button class="language-button" id="language-toggle" type="button" aria-label="Switch language">EN</button>
+      <div class="topbar-actions">
+        <span class="topbar-user" id="topbar-user"></span>
+        <button class="language-button" id="workspace-language-toggle" type="button" aria-label="Switch language">EN</button>
+        <button class="logout-button" id="logout-button" type="button" data-i18n="logout">خروج</button>
+      </div>
     </header>
 
     <main id="home">
+      <div data-page-view="dashboard">
+      <div class="dashboard-welcome section-wrap">
+        <div>
+          <p class="eyebrow"><span data-i18n="dashboardGreeting">أهلًا،</span> <strong id="dashboard-user-name"></strong></p>
+          <p class="dashboard-subtitle" data-i18n="dashboardSubtitle">مساحة واحدة لمشاريعك وتعلّمك وخطواتك اليومية.</p>
+        </div>
+        <div class="dashboard-stats" aria-label="إحصاءات حسابك">
+          <article><strong data-stat="projects">0</strong><span data-i18n="statProjects">مشاريع</span></article>
+          <article><strong data-stat="checkins">0</strong><span data-i18n="statCheckins">تأملات</span></article>
+          <article><strong data-stat="challenges">0</strong><span data-i18n="statChallenges">تحديات مكتملة</span></article>
+          <article><strong data-stat="lessons">0</strong><span data-i18n="statLessons">دروس مكتملة</span></article>
+        </div>
+      </div>
       <section class="welcome section-wrap" id="today">
         <div class="welcome-copy">
           <p class="eyebrow"><span class="eyebrow-dot"></span><span data-i18n="eyebrow">مساحة آمنة لتكون على طبيعتك</span></p>
@@ -103,6 +157,10 @@
               <p class="form-status" id="checkin-status" role="status" aria-live="polite"></p>
               <button class="submit-button" type="submit"><span data-i18n="saveCheckin">احفظ لحظتي</span><span aria-hidden="true">↗</span></button>
             </div>
+            <div class="checkin-history-wrap">
+              <h3 data-i18n="checkinHistoryTitle">تأملاتك الأخيرة</h3>
+              <ul class="checkin-history" id="checkin-history"></ul>
+            </div>
           </form>
         </div>
       </section>
@@ -143,6 +201,92 @@
           </article>
         </div>
       </section>
+      <section class="section-wrap dashboard-bottom">
+        <div class="section-heading">
+          <div><p class="eyebrow" data-i18n="projectsEyebrow">مساحتك العملية</p><h2 data-i18n="dashboardProjectsTitle">مساحة المشاريع</h2></div>
+          <button class="text-link" type="button" data-page="projects" data-i18n="viewAllProjects">عرض كل المشاريع</button>
+        </div>
+        <div class="dashboard-projects" id="dashboard-projects"></div>
+        <p class="empty-state" id="dashboard-projects-empty" data-i18n="noProjects" hidden>لم تحفظ أي مشروع بعد.</p>
+        <div class="section-heading achievements-heading">
+          <div><p class="eyebrow" data-i18n="journeyEyebrow">مساحتك، إيقاعك</p><h2 data-i18n="achievementsTitle">إنجازاتك</h2></div>
+        </div>
+        <div class="achievement-grid" id="achievement-list"></div>
+      </section>
+      </div>
+
+      <section class="app-page section-wrap" data-page-view="projects" hidden>
+        <div class="page-heading">
+          <div><p class="eyebrow" data-i18n="projectsEyebrow">مساحتك العملية</p><h1 data-i18n="projectsTitle">أفكارك تستحق أن ترى النور.</h1></div>
+          <p data-i18n="projectsDescription">أنشئ مشاريعك، حدّث حالتها، واحتفظ بتفاصيلها في مساحتك الشخصية.</p>
+        </div>
+        <form class="project-form" id="project-form">
+          <div class="project-form-fields">
+            <label class="form-label" for="project-title" data-i18n="projectTitleLabel">اسم المشروع</label>
+            <input class="text-input" id="project-title" name="title" maxlength="120" required data-i18n-placeholder="projectTitlePlaceholder" placeholder="مثال: تعلم مهارة جديدة">
+            <label class="form-label" for="project-description" data-i18n="projectDescriptionLabel">وصف مختصر</label>
+            <textarea class="text-input" id="project-description" name="description" rows="2" maxlength="1000" data-i18n-placeholder="projectDescriptionPlaceholder" placeholder="ما الخطوة القادمة؟"></textarea>
+          </div>
+          <div class="project-form-action"><p id="project-status-message" class="form-status" role="status" aria-live="polite"></p><button class="submit-button" type="submit"><span data-i18n="addProject">أضف مشروعًا</span><span aria-hidden="true">+</span></button></div>
+        </form>
+        <div class="project-list" id="project-list"></div>
+        <p class="empty-state" id="projects-empty" data-i18n="projectsEmpty" hidden>لا توجد مشاريع محفوظة بعد. أضف مشروعك الأول أعلاه.</p>
+      </section>
+      <dialog class="modal-dialog" id="project-edit-dialog">
+        <form class="profile-card modal-card" id="project-edit-form">
+          <input id="edit-project-id" type="hidden">
+          <h2 data-i18n="editProject">تعديل المشروع</h2>
+          <label class="form-label" for="edit-project-title" data-i18n="projectTitleLabel">اسم المشروع</label>
+          <input class="text-input" id="edit-project-title" maxlength="120" required>
+          <label class="form-label" for="edit-project-description" data-i18n="projectDescriptionLabel">وصف مختصر</label>
+          <textarea class="text-input" id="edit-project-description" rows="3" maxlength="1000"></textarea>
+          <p id="edit-project-status" class="form-status" role="status" aria-live="polite"></p>
+          <div class="modal-actions">
+            <button class="logout-button" id="cancel-project-edit" type="button" data-i18n="cancel">إلغاء</button>
+            <button class="submit-button" type="submit"><span data-i18n="saveProject">حفظ المشروع</span><span aria-hidden="true">↗</span></button>
+          </div>
+        </form>
+      </dialog>
+
+      <section class="app-page section-wrap" data-page-view="learning" hidden>
+        <div class="page-heading">
+          <div><p class="eyebrow" data-i18n="learningEyebrow">تعلّم بخطوات قابلة للتطبيق</p><h1 data-i18n="learningTitle">معرفة صغيرة، أثر مستمر.</h1></div>
+          <p data-i18n="learningDescription">مواد قصيرة من NEO تساعدك على التركيز والتأمل والتخطيط. سجّل ما أنجزته للعودة إليه لاحقًا.</p>
+        </div>
+        <div class="learning-grid" id="learning-list"></div>
+      </section>
+
+      <section class="app-page section-wrap" data-page-view="explore" hidden>
+        <div class="page-heading">
+          <div><p class="eyebrow" data-i18n="exploreEyebrow">مساحة للأسئلة المفتوحة</p><h1 data-i18n="exploreTitle">اتبع فضولك.</h1></div>
+          <p data-i18n="exploreDescription">أسئلة وتمارين قصيرة للتفكير. اختر واحدًا واكتب تأملك في مساحة اليوم متى شئت.</p>
+        </div>
+        <div class="explore-grid" id="explore-list"></div>
+      </section>
+
+      <section class="app-page section-wrap" data-page-view="profile" hidden>
+        <div class="page-heading">
+          <div><p class="eyebrow" data-i18n="profileEyebrow">مساحتك الشخصية</p><h1 data-i18n="profileTitle">أنت تقود هذه الرحلة.</h1></div>
+          <p data-i18n="profileDescription">حدّث بياناتك أو نزّل نسخة من بياناتك المحفوظة.</p>
+        </div>
+        <div class="profile-grid">
+          <form class="profile-card" id="profile-form">
+            <h2 data-i18n="profileDetails">تفاصيل الحساب</h2>
+            <label class="form-label" for="profile-name" data-i18n="nameLabel">الاسم</label>
+            <input class="text-input" id="profile-name" name="name" maxlength="80" required>
+            <label class="form-label" for="profile-email" data-i18n="emailLabel">البريد الإلكتروني</label>
+            <input class="text-input" id="profile-email" name="email" type="email" readonly>
+            <p id="profile-status-message" class="form-status" role="status" aria-live="polite"></p>
+            <button class="submit-button" type="submit"><span data-i18n="saveProfile">حفظ التغييرات</span><span aria-hidden="true">↗</span></button>
+          </form>
+          <div class="profile-card">
+            <h2 data-i18n="yourData">بياناتك</h2>
+            <p data-i18n="dataExportDescription">نزّل نسخة JSON من مشاريعك وتأملاتك وإنجازاتك.</p>
+            <button class="outline-button" id="export-data" type="button" data-i18n="downloadData">تنزيل بياناتي</button>
+            <p id="export-status-message" class="form-status" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="footer">
@@ -152,5 +296,7 @@
         <span>© NEO <span id="year"></span></span>
       </div>
     </footer>
+    <p class="app-status" id="app-status" role="status" aria-live="polite"></p>
+    </div>
   </body>
 </html>
